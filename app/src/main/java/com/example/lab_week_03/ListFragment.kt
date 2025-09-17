@@ -48,7 +48,10 @@ class ListFragment : Fragment(){
         val coffeeList = listOf<View>(
             view.findViewById(R.id.affogato),
             view.findViewById(R.id.americano),
-            view.findViewById(R.id.latte)
+            view.findViewById(R.id.latte),
+            view.findViewById(R.id.mocha),
+            view.findViewById(R.id.espresso)
+
         )
             // coffeeList.forEach{
             // it.setOnClickListener(this)
@@ -58,7 +61,8 @@ class ListFragment : Fragment(){
             fragmentBundle.putInt(COFFEE_ID, coffee.id)
             coffee.setOnClickListener(
                 Navigation.createNavigateOnClickListener(
-                    R.id.coffee_id_action, fragmentBundle)
+                    R.id.coffee_id_action, fragmentBundle
+                )
             )
         }
     }
