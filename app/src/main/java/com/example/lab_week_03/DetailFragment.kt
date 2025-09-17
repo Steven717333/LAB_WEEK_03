@@ -17,6 +17,9 @@ private const val ARG_PARAM2 = "param2"
  * Use the [DetailFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
+
+
+
 class DetailFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
@@ -42,7 +45,7 @@ class DetailFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_detail, container, false)
     }
 
-    fun setCoffeeData(id: Int) {
+    fun         setCoffeeData(id: Int) {
         when (id) {
             R.id.affogato -> {
                 coffeeTitle?.text = getString(R.string.affogato_title)
@@ -61,14 +64,19 @@ class DetailFragment : Fragment() {
         }
     }
 
-    companion object {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val coffeeId = arguments?.getInt(COFFEE_ID, 0) ?: 0
+        setCoffeeData(coffeeId)
+    }
 
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
+    companion object {
+        private const val COFFEE_ID = "COFFEE_ID"
+
+        fun newInstance(coffeeId: Int) =
             DetailFragment().apply {
                 arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+                    putInt(COFFEE_ID, coffeeId)
                 }
             }
     }
